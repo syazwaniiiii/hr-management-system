@@ -10,10 +10,10 @@ Before starting, make sure you have these installed:
 
 ---
 
-## 1. Clone the Project
+## 1. FORK MY REPO AND Clone the forked repo 
 
 ```bash
-git clone https://github.com/syahrulx/hr-management-system.git
+git clone https://github.com/your_username/hr-management-system.git
 cd hr-management-system
 ```
 
