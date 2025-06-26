@@ -16,7 +16,7 @@ const props = defineProps({
 <template>
     <li>
         <Link :href="route(link)"
-              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-700 dark:text-gray-100"
+              class="flex items-center p-2 py-4 text-gray-900 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-700 dark:text-gray-100"
               :class="{'bg-purple-100 dark:bg-purple-800' :
               activeLinksRecursive ? activeLinksRecursive.some(item => $page.url.includes(item)) :
               activeLinks.includes(route().current())
@@ -29,7 +29,7 @@ const props = defineProps({
                 <slot/>
             </svg>
 
-            <span class="flex-1 mx-3 whitespace-nowrap">{{ itemName }}</span>
+            <span class="flex-1 mx-4 whitespace-nowrap">{{ itemName }}</span>
 
             <span v-if="hasBadge"
                   :class="{'inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-purple-800 bg-purple-100 rounded-full dark:bg-purple-700 dark:text-gray-300': badge === 'number',

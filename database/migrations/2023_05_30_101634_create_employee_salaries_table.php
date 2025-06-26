@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employee_salaries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->nullable()->constrained()->onDelete('cascade');
-            $table->enum('currency', ['EGP', 'USD', 'EUR', 'GBP', 'CAD', 'KWD', 'SAR', 'AED'])->default('EGP');
+            $table->enum('currency', ['EGP', 'USD', 'EUR', 'GBP', 'CAD', 'KWD', 'SAR', 'AED', 'MYR','IDR'])->default('MYR');
             $table->integer('salary');
             $table->date('start_date');
             $table->date('end_date')->nullable();

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +47,19 @@ Route::group(['middleware' => ['role:admin', 'auth']], function () {
     // Calendar
     Route::get('calendar', [\App\Http\Controllers\CalendarController::class, 'calendarIndex'])->name('calendar.index');
     Route::resource('calendars', \App\Http\Controllers\CalendarController::class);
+    Route::get('calendar/weekly', [CalendarController::class, 'weeklySchedule'])->name('calendar.weekly');
 
+    //Weekly Schedule
+    Route::get('schedule', [\App\Http\Controllers\ScheduleController::class, 'admin'])->name('schedule.admin');
+    Route::get('schedule/weekly', [\App\Http\Controllers\ScheduleController::class, 'weekly'])->name('schedule.weekly');
+
+    // Schedule API routes
+    Route::post('schedule/assign', [\App\Http\Controllers\ScheduleController::class, 'assign'])->name('schedule.assign');
+    Route::get('schedule/week', [\App\Http\Controllers\ScheduleController::class, 'week'])->name('schedule.week');
+    Route::post('schedule/reset', [\App\Http\Controllers\ScheduleController::class, 'reset'])->name('schedule.reset');
 
 });
+
 
 // Logged
 Route::group(['middleware' => ['auth']], function () {
@@ -61,6 +73,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('requests', \App\Http\Controllers\RequestController::class)->only(['index', 'show', 'create', 'store']);
     Route::resource('payrolls', \App\Http\Controllers\PayrollController::class)->only(['index', 'show']);
     Route::get('calendar', [\App\Http\Controllers\CalendarController::class, 'calendarIndex'])->name('calendar.index');
+    Route::get('my-schedule', [\App\Http\Controllers\ScheduleController::class, 'employee'])
+        ->middleware('role:employee')
+        ->name('schedule.employee');
 
     Route::get('my-attendance', [\App\Http\Controllers\AttendanceController::class, 'attendanceDashboard'])->name('attendance.dashboard');
     Route::post('attendance/signin', [\App\Http\Controllers\AttendanceController::class, 'dashboardSignInAttendance'])->name('attendance.dashboardSignIn');

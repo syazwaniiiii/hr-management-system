@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Employee;
@@ -12,48 +13,45 @@ use App\Models\Globals;
 use App\Models\Manager;
 use App\Models\Position;
 use App\Models\Shift;
-use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
 class StarterSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Globals::create([
-            'organization_name' => 'Global Solutions Inc.',
-            'organization_address' => '123 Main Street, Anytown, USA',
+            'organization_name' => 'MY Solutions Sdn Bhd',
+            'organization_address' => 'Lot 88, Jalan Ampang, Kuala Lumpur, Malaysia',
             'absence_limit' => 30,
-            'email' => 'info@globalsolutions.com',
+            'email' => 'admin@mysolutions.my',
         ]);
 
         $branch = Branch::factory()->create([
-            'name' => 'Main Branch',
+            'name' => 'Ibu Pejabat Kuala Lumpur',
         ]);
 
         $department = Department::create([
-            'name' => 'HR',
+            'name' => 'Sumber Manusia',
         ]);
 
         Position::create([
-            'name' => 'HR Manager',
-            'description' => 'Responsible for all HR activities',
+            'name' => 'Pengurus HR',
+            'description' => 'Bertanggungjawab atas semua aktiviti sumber manusia',
         ]);
+
         Shift::create([
-            'name' => "Day Shift",
+            'name' => "Syif Pagi",
             'start_time' => '08:00:00',
             'end_time' => '16:00:00',
         ]);
 
         $root = Employee::factory()->create([
-            'name' => 'Super Root',
-            'email' => 'super@root.com',
-            'phone' => '01001095076',
-            'national_id' => '29904268801154',
+            'name' => 'Super Admin',
+            'email' => 'admin@mysolutions.my',
+            'phone' => '0123456789',
+            'national_id' => '900101145512',
             'hired_on' => '2023-01-25',
-            'password' => '$2y$10$7BMn8WlpLkUB64fCCCVCvuFbqp4dO34dLL/a7MjMdoITz0FOIOZ.G',
+            'password' => bcrypt('password'),
             'branch_id' => 1,
             'department_id' => 1,
         ]);
@@ -74,8 +72,8 @@ class StarterSeeder extends Seeder
 
         EmployeeSalary::create([
             'employee_id' => 1,
-            'currency' => 'USD',
-            'salary' => 10000,
+            'currency' => 'MYR',
+            'salary' => 8000,
             'start_date' => now()->format('Y-m-d'),
             'end_date' => null,
         ]);
@@ -91,12 +89,7 @@ class StarterSeeder extends Seeder
             'department_id' => 1,
         ]);
 
-        // Create roles
-        $roles = [
-            'admin',
-            'employee',
-        ];
-
+        $roles = ['admin', 'employee'];
         foreach ($roles as $role) {
             Role::create(['name' => $role]);
         }

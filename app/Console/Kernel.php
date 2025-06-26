@@ -4,7 +4,6 @@ namespace App\Console;
 
 use App\Models\Globals;
 use App\Tasks\DailyAttendanceHandle;
-use App\Tasks\MonthlyPayrollsHandle;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

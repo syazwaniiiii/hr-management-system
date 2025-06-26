@@ -56,7 +56,7 @@ function changeLanguage(locale){
                     <div class="bg-purple-500 h-px flex-grow"></div>
                 </div>
 
-                <SidebarListItem :item-name="__('My Dashboard')" :hasBadge="false" link="dashboard.index"
+                <SidebarListItem :item-name="__('My Dashboardd')" :hasBadge="false" link="dashboard.index"
                                  :active-links="['dashboard.index']">
                     <RocketIcon class="text-gray-500 dark:text-gray-100"/>
                 </SidebarListItem>
@@ -70,11 +70,6 @@ function changeLanguage(locale){
                     <EmployeeIcon class="text-gray-500 dark:text-gray-100"/>
                 </SidebarListItem>
 
-                <SidebarListItem :item-name="__('Organization')"
-                                 :active-links-recursive="['branches', 'departments', 'positions', 'shifts', 'globals', 'metrics', 'logs']"
-                                 badge-content="0" link="branches.index">
-                    <OrganizationIcon class="text-gray-500 dark:text-gray-100"/>
-                </SidebarListItem>
 
                 <SidebarListItem :item-name="__('Requests')" :hasBadge="($page.props.ui.reqCount.toString() !== '0')"
                                  badge="number" :badge-content="$page.props.ui.reqCount.toString() ?? '?'"
@@ -83,21 +78,14 @@ function changeLanguage(locale){
                     <MessageIcon class="text-gray-500 dark:text-gray-100"/>
                 </SidebarListItem>
 
-                <SidebarListItem :item-name="__('Calendar')" link="calendar.index"
-                                 :activeLinks="['calendar.index', 'calendars.index', 'calendars.create',
-                 'calendars.show', 'calendars.edit']">
+                <SidebarListItem :item-name="__('Schedule')" link="schedule.admin"
+                                 :activeLinks="['schedule.admin']">
                     <CalendarIcon class="text-gray-500 dark:text-gray-100"/>
                 </SidebarListItem>
 
                 <SidebarListItem :item-name="__('Attendance')" link="attendances.index"
                                  :activeLinks="['attendance.dashboard', 'attendance.show', 'attendances.index', 'attendances.create']">
                     <TableIcon class="text-gray-500 dark:text-gray-100"/>
-                </SidebarListItem>
-
-                <SidebarListItem :item-name="__('Payrolls')" link="payrolls.index"
-                                 :activeLinks="['payrolls.index', 'payrolls.show', 'payrolls.edit']"
-                >
-                    <MoneyIcon class="text-gray-500 dark:text-gray-100"/>
                 </SidebarListItem>
 
             </ul>
@@ -128,12 +116,8 @@ function changeLanguage(locale){
                     <MessageIcon class="text-gray-500 dark:text-gray-100"/>
                 </SidebarListItem>
 
-                <SidebarListItem :item-name="__('My Payrolls')"
-                                 link="payrolls.index" :active-links="['payrolls.index', 'payrolls.show']">
-                    <MoneyIcon class="text-gray-500 dark:text-gray-100"/>
-                </SidebarListItem>
-
-                <SidebarListItem :item-name="__('My Calendar')" link="calendar.index" :active-links="['calendar.index']">
+                <SidebarListItem :item-name="__('My Schedule')" link="schedule.employee"
+                                 :active-links="['schedule.employee']">
                     <CalendarIcon class="text-gray-500 dark:text-gray-100"/>
                 </SidebarListItem>
 
@@ -330,7 +314,6 @@ function changeLanguage(locale){
                             <ResponsiveNavLink :href="route('requests.index')">Requests</ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('calendar.index')">Calendar</ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('attendances.index')">Attendance</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('payrolls.index')">Payrolls</ResponsiveNavLink>
                         </div>
 
                         <!-- Responsive Settings Options -->
